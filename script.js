@@ -58,7 +58,7 @@ function showError(error) {
 const key = "cb32c7b51eb9bb812fbb0e2c4b498c5a";
 
 function getWeather(latitude, longitude) {
-    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}&lang=fr`;
 
     fetch(api)
     .then(function(response){
@@ -101,6 +101,6 @@ tempElement.addEventListener("click", function(){
         weather.temperature.unit = "fahrenheit";
     }else{
         tempElement.innerHTML = `${weather.temperature.value}°<span>C</span>`;
-        weather.temperature.unit = "celsius"
+        weather.temperature.unit = "celsius";
     }
 });
