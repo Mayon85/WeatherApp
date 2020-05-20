@@ -30,51 +30,50 @@ weather.temperature = {
 
 // APP CONSTS AND VARS
 const KELVIN = 273;
+// API KEY
+const key = "82005d27a116c2880c8f0fcb866998a0";
 
-// CHECK IS BROWSER SUPPORTS GEOLOCALISATION
-if ('geolocation' in navigator) {
+// CHECK IF BROWSER SUPPORTS GEOLOCATION
+if('geolocation' in navigator){
     navigator.geolocation.getCurrentPosition(setPosition, showError);
-} else {
+}else{
     notificationElement.style.display = "block";
-    notificationElement.innerHTLM = "<p> Votre navigateur ne supporte pas la géolocalisation</p>";
+    notificationElement.innerHTML = "<p>Browser doesn't Support Geolocation</p>";
 }
 
-//SET USER'S POSITION
-function setPosition(position) {
+// SET USER'S POSITION
+function setPosition(position){
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-
+    
     getWeather(latitude, longitude);
 }
 
-// SHOW ERROR IF ISSUE WITH GEOLOCALISATION SERVICE
-function showError(error) {
+// SHOW ERROR WHEN THERE IS AN ISSUE WITH GEOLOCATION SERVICE
+function showError(error){
     notificationElement.style.display = "block";
-    notificationElement.innerHTLM = `<p> ${error.message} </p>`;
+    notificationElement.innerHTML = `<p> ${error.message} </p>`;
 }
 
-// GET WEATHER FROM API
-
-const key = "cb32c7b51eb9bb812fbb0e2c4b498c5a";
-
-function getWeather(latitude, longitude) {
+// GET WEATHER FROM API PROVIDER
+function getWeather(latitude, longitude){
     let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
-
+    
     fetch(api)
-    .then(function(response){
-        let data = response.json();
-        return data;
-    })
-    .then(function(data) {
-        weather.temperature.value = Math.floor(data.main.temp - KELVIN);
-        weather.description = data.weather[0].description;
-        weather.iconId = data.weather[0].icon;
-        weather.city = data.name;
-        weather.country = data.sys.country;
-    })
-    .then(function() {
-        displayWeather();
-    });
+        .then(function(response){
+            let data = response.json();
+            return data;
+        })
+        .then(function(data){
+            weather.temperature.value = Math.floor(data.main.temp - KELVIN);
+            weather.description = data.weather[0].description;
+            weather.iconId = data.weather[0].icon;
+            weather.city = data.name;
+            weather.country = data.sys.country;
+        })
+        .then(function(){
+            displayWeather();
+        });
 }
 
 // DISPLAY WEATHER 
