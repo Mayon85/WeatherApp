@@ -39,11 +39,12 @@ body{
 .notification{
     background-color: #f8d7da;
     display: none;
+    margin-bottom: -40px
 }
 
 .notification p{
     color: #721c24;
-    font-size: 1.2em;
+    font-size: 1em;
     margin: 0;
     text-align: center;
     padding: 10px 0;
