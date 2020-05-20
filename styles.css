@@ -5,6 +5,7 @@
 body{
     background: url(./icons/bg.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,7 +18,7 @@ body{
     display: block;
     margin: auto;
     color: #fff;
-    background-color: #6e7798;
+    background-color: #293251;
 }
 
 .display-date p {
